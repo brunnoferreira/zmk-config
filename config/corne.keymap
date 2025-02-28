@@ -9,6 +9,25 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        CAPSWORD {
+            bindings = <&caps_word>;
+            key-positions = <16 19>;
+        };
+
+        Alfred {
+            bindings = <&kp LC(SPACE)>;
+            key-positions = <38 39>;
+        };
+
+        Clipboard {
+            bindings = <&kp LC(LS(V))>;
+            key-positions = <40 37>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -50,10 +69,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&kp LCTRL  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
-&kp LSHFT  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
-                             &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp RALT
+&kp TAB    &kp EXCL   &kp AT     &kp HASH          &kp DLLR           &kp PRCNT    &kp CARET  &kp N7        &kp N8        &kp N9        &kp RPAR  &kp BSPC
+&kp LCTRL  &kp MINUS  &kp EQUAL  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans       &kp MINUS  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp BSLH  &kp GRAVE
+&kp LSHFT  &kp UNDER  &kp PLUS   &kp LEFT_BRACE    &kp RIGHT_BRACE    &kp TILDE    &kp UNDER  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PIPE  &kp TILDE
+                                 &kp N0            &trans             &kp SPACE    &kp RET    &trans        &kp RALT
             >;
         };
     };
