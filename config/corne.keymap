@@ -39,13 +39,13 @@
             // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |
             // |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |
             // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |
-            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+            //             | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
 &kp Q        &kp W           &kp E           &kp R             &kp T        &kp Y        &kp U              &kp I            &kp O            &kp P
 &mt LCTRL A  &mt LEFT_ALT S  &mt LEFT_GUI F  &mt LEFT_SHIFT F  &kp G        &kp H        &mt RIGHT_SHIFT J  &mt RIGHT_GUI K  &mt RIGHT_ALT L  &mt RCTRL SEMI
 &kp Z        &kp X           &kp C           &kp V             &kp B        &kp N        &kp M              &kp COMMA        &kp DOT          &kp FSLH
-                                        &kp LGUI        &kp BACKSPACE     &lt 2 TAB    &lt 1 ENTER  &kp SPACE          &kp RALT
+                             &kp LGUI        &kp BACKSPACE     &lt 2 TAB    &lt 1 ENTER  &kp SPACE          &kp RALT
             >;
         };
 
@@ -54,13 +54,13 @@
             // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
             // | BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |
             // |     |     |     |     |     |   |     |     |     |     |     |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
+            //             | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
 &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6    &kp N7          &kp UP_ARROW    &kp N9     &kp N0
 &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT  &kp APOSTROPHE
 &kp K_LOCK    &trans        &trans        &trans        &trans          &trans    &trans          &trans          &trans     &trans
-                                        &kp LGUI      &trans        &kp ESC         &kp RET   &trans          &kp RALT
+                            &kp LGUI      &trans        &kp ESC         &kp RET   &trans          &kp RALT
             >;
 
             label = "Navigation";
@@ -71,13 +71,13 @@
             // |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |
             // |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |
             // |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
+            //             | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
 &kp EXCL   &kp AT     &kp HASH          &kp DLLR           &kp PRCNT    &kp CARET  &kp N7        &kp N8        &kp N9        &kp RPAR
 &kp MINUS  &kp EQUAL  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans       &kp MINUS  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp BSLH
 &kp UNDER  &kp PLUS   &kp LEFT_BRACE    &kp RIGHT_BRACE    &kp TILDE    &kp UNDER  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PIPE
-                                 &kp N0            &trans             &kp SPACE    &kp RET    &trans        &kp RALT
+                      &kp N0            &trans             &kp SPACE    &kp RET    &trans        &kp RALT
             >;
 
             label = "Numbers and Symbols";
