@@ -20,7 +20,6 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
 
-            quick-tap-ms = <200>;
             hold-trigger-key-positions = <10 11 12 17 18 19 30 31 32 33 34 35>;
             require-prior-idle-ms = <125>;
         };
