@@ -73,10 +73,10 @@
             //             | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-  &kp N1        &kp N2  &kp N3    &kp N4  &kp N5       &kp N6    &kp N7          &kp UP_ARROW    &kp N9     &kp N0
-  &trans        &trans  &trans    &trans  &trans       &kp LEFT  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT  &kp APOSTROPHE
-  &kp K_COFFEE  &trans  &trans    &trans  &trans       &trans    &trans          &trans          &trans     &trans
-                        &kp LGUI  &trans  &lt 3 ESC    &kp RET   &trans          &kp RALT
+  &kp N1       &kp N2  &kp N3    &kp N4  &kp N5       &kp N6    &kp N7          &kp UP_ARROW    &kp N9     &kp N0
+  &trans       &trans  &trans    &trans  &trans       &kp LEFT  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT  &kp APOSTROPHE
+  &kp C_POWER  &trans  &trans    &trans  &trans       &trans    &trans          &trans          &trans     &kp LG(LC(SPACE))
+                       &kp LGUI  &trans  &lt 3 ESC    &kp RET   &trans          &kp RALT
             >;
 
             label = "Navigation";
@@ -90,10 +90,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-  &kp EXCL   &kp AT     &kp HASH          &kp DLLR           &kp PRCNT    &kp CARET  &kp N7        &kp N8        &kp N9        &kp RPAR
-  &kp MINUS  &kp EQUAL  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans       &kp MINUS  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp BSLH
-  &kp UNDER  &kp PLUS   &kp LEFT_BRACE    &kp RIGHT_BRACE    &kp TILDE    &kp UNDER  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PIPE
-                        &kp N0            &trans             &kp SPACE    &kp RET    &trans        &kp RALT
+  &kp TILDE        &trans         &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp PRCNT     &kp N7   &kp N8  &kp N9  &kp PLUS   &kp ASTERISK
+  &kp EXCLAMATION  &kp AT         &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp DOLLAR    &kp N4   &kp N5  &kp N6  &kp MINUS  &kp BACKSLASH
+  &kp CARET        &kp AMPERSAND  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp HASH      &kp N1   &kp N2  &kp N3  &kp DOT    &kp EQUAL
+                                  &trans                &trans                 &kp SPACE     &kp RET  &kp N0  &trans
             >;
 
             label = "Numbers and Symbols";
