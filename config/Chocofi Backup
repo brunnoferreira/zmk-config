@@ -1,178 +1,178 @@
-# Config
-
-# Uncomment the following lines to enable the Corne RGB Underglow
-# CONFIG_ZMK_RGB_UNDERGLOW=y
-# CONFIG_WS2812_STRIP=y
-
-CONFIG_ZMK_KEYBOARD_NAME="Chocofi"
-
-# Uncomment the following line to enable the Corne OLED Display
-CONFIG_ZMK_DISPLAY=y
-CONFIG_ZMK_DISPLAY_INVERT=y
-CONFIG_ZMK_WIDGET_LAYER_STATUS=y
-CONFIG_ZMK_WIDGET_BATTERY_STATUS=y
-CONFIG_ZMK_WIDGET_BATTERY_STATUS_SHOW_PERCENTAGE=y
-CONFIG_ZMK_WIDGET_OUTPUT_STATUS=y
-CONFIG_ZMK_WIDGET_WPM_STATUS=y
-CONFIG_ZMK_DISPLAY_STATUS_SCREEN_BUILT_IN=y
-CONFIG_ZMK_DISPLAY_WORK_QUEUE_SYSTEM=y
-
-CONFIG_ZMK_STUDIO_LOCKING=n
-
-# Keymap
-
-/*
- * Copyright (c) 2020 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/keys.h>
-
-/ {
-    chosen { zmk,matrix_transform = &five_column_transform; };
-
-    behaviors {
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <175>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-
-            require-prior-idle-ms = <125>;
-        };
-
-        td_braces: td_braces {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_BRACES";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_BRACE>, <&open_close_braces>;
-        };
-
-        td_parentheses: td_parentheses {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_PARENTHESES";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_PARENTHESIS>, <&open_close_parentheses>;
-        };
-
-        td_brackets: td_brackets {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_BRACKETS";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_BRACKET>, <&open_close_brackets>;
-        };
-    };
-
-    combos {
-        compatible = "zmk,combos";
-
-        combo_caps_word {
-            bindings = <&caps_word>;
-            key-positions = <13 16>;
-            layers = <0>;
-        };
-
-        combo_alfred {
-            bindings = <&kp LC(SPACE)>;
-            key-positions = <32 33>;
-            layers = <0>;
-            require-prior-idle-ms = <50>;
-        };
-
-        combo_clipboard {
-            bindings = <&kp LS(LG(V))>;
-            key-positions = <34 31>;
-            layers = <0>;
-        };
-    };
-
-    macros {
-        open_close_parentheses: open_close_parentheses {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT>;
-            label = "OPEN_CLOSE_PARENTHESES";
-        };
-
-        open_close_braces: open_close_braces {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_BRACE &kp RIGHT_BRACE &kp LEFT>;
-            label = "OPEN_CLOSE_BRACES";
-        };
-
-        open_close_brackets: open_close_brackets {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT>;
-            label = "OPEN_CLOSE_BRACKETS";
-        };
-    };
-
-    keymap {
-        compatible = "zmk,keymap";
-
-        default_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |
-            // |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |
-            // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |
-            //             | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-
-            bindings = <
-  &kp Q        &kp W           &kp E           &kp R             &kp T        &kp Y        &kp U              &kp I            &kp O            &kp P
-  &hm LCTRL A  &hm LEFT_ALT S  &hm LEFT_GUI D  &hm LEFT_SHIFT F  &kp G        &kp H        &hm RIGHT_SHIFT J  &hm RIGHT_GUI K  &hm RIGHT_ALT L  &hm RCTRL SEMI
-  &kp Z        &kp X           &kp C           &kp V             &kp B        &kp N        &kp M              &kp COMMA        &kp DOT          &kp FSLH
-                               &kp LGUI        &kp BACKSPACE     &lt 2 TAB    &lt 1 ENTER  &kp SPACE          &kp RALT
-            >;
-        };
-
-        lower_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
-            // |     |     |     |     |     |   | LFT | DWN |  UP | RGT |     |
-            // |     |     |     |     |     |   |     |     |     |     |     |
-            //             | GUI |     | SPC |   | ENT |     | ALT |
-
-            bindings = <
-  &kp N1       &kp N2  &kp N3    &kp N4  &kp N5       &kp N6    &kp N7          &kp UP_ARROW    &kp N9     &kp N0
-  &kp GRAVE    &trans  &trans    &trans  &trans       &kp LEFT  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT  &kp APOSTROPHE
-  &kp C_POWER  &trans  &trans    &trans  &trans       &trans    &trans          &trans          &trans     &kp LG(LC(SPACE))
-                       &kp LGUI  &trans  &lt 3 ESC    &kp RET   &trans          &kp RALT
-            >;
-
-            label = "Navigation";
-        };
-
-        raise_layer {
-            // -----------------------------------------------------------------------------------------
-            // |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |
-            // |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |
-            // |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
-            bindings = <
-  &kp TILDE        &trans       &kp AMPERSAND  &td_braces       &kp RIGHT_BRACE          &kp N7   &kp N8  &kp N9  &kp PLUS   &kp ASTERISK
-  &kp EXCLAMATION  &kp AT       &kp HASH       &td_parentheses  &kp RIGHT_PARENTHESIS    &kp N4   &kp N5  &kp N6  &kp MINUS  &kp SLASH
-  &kp DOLLAR       &kp PERCENT  &kp CARET      &td_brackets     &kp RIGHT_BRACKET        &kp N1   &kp N2  &kp N3  &kp DOT    &kp EQUAL
-                                &trans         &trans           &kp SPACE                &kp RET  &kp N0  &trans
-            >;
-
-            label = "Numbers and Symbols";
-        };
-
-        layer_3 {
-            bindings = <
-  &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans
-  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans
-  &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans
-                              &trans        &trans        &trans          &trans  &trans  &trans
-            >;
-        };
-    };
-};
+# # Config
+# 
+# # Uncomment the following lines to enable the Corne RGB Underglow
+# # CONFIG_ZMK_RGB_UNDERGLOW=y
+# # CONFIG_WS2812_STRIP=y
+# 
+# CONFIG_ZMK_KEYBOARD_NAME="Chocofi"
+# 
+# # Uncomment the following line to enable the Corne OLED Display
+# CONFIG_ZMK_DISPLAY=y
+# CONFIG_ZMK_DISPLAY_INVERT=y
+# CONFIG_ZMK_WIDGET_LAYER_STATUS=y
+# CONFIG_ZMK_WIDGET_BATTERY_STATUS=y
+# CONFIG_ZMK_WIDGET_BATTERY_STATUS_SHOW_PERCENTAGE=y
+# CONFIG_ZMK_WIDGET_OUTPUT_STATUS=y
+# CONFIG_ZMK_WIDGET_WPM_STATUS=y
+# CONFIG_ZMK_DISPLAY_STATUS_SCREEN_BUILT_IN=y
+# CONFIG_ZMK_DISPLAY_WORK_QUEUE_SYSTEM=y
+# 
+# CONFIG_ZMK_STUDIO_LOCKING=n
+# 
+# # Keymap
+# 
+# /*
+#  * Copyright (c) 2020 The ZMK Contributors
+#  *
+#  * SPDX-License-Identifier: MIT
+#  */
+# 
+# #include <behaviors.dtsi>
+# #include <dt-bindings/zmk/bt.h>
+# #include <dt-bindings/zmk/keys.h>
+# 
+# / {
+#     chosen { zmk,matrix_transform = &five_column_transform; };
+# 
+#     behaviors {
+#         hm: homerow_mods {
+#             compatible = "zmk,behavior-hold-tap";
+#             label = "HOMEROW_MODS";
+#             #binding-cells = <2>;
+#             tapping-term-ms = <175>;
+#             flavor = "tap-preferred";
+#             bindings = <&kp>, <&kp>;
+# 
+#             require-prior-idle-ms = <125>;
+#         };
+# 
+#         td_braces: td_braces {
+#             compatible = "zmk,behavior-tap-dance";
+#             label = "TD_BRACES";
+#             #binding-cells = <0>;
+#             bindings = <&kp LEFT_BRACE>, <&open_close_braces>;
+#         };
+# 
+#         td_parentheses: td_parentheses {
+#             compatible = "zmk,behavior-tap-dance";
+#             label = "TD_PARENTHESES";
+#             #binding-cells = <0>;
+#             bindings = <&kp LEFT_PARENTHESIS>, <&open_close_parentheses>;
+#         };
+# 
+#         td_brackets: td_brackets {
+#             compatible = "zmk,behavior-tap-dance";
+#             label = "TD_BRACKETS";
+#             #binding-cells = <0>;
+#             bindings = <&kp LEFT_BRACKET>, <&open_close_brackets>;
+#         };
+#     };
+# 
+#     combos {
+#         compatible = "zmk,combos";
+# 
+#         combo_caps_word {
+#             bindings = <&caps_word>;
+#             key-positions = <13 16>;
+#             layers = <0>;
+#         };
+# 
+#         combo_alfred {
+#             bindings = <&kp LC(SPACE)>;
+#             key-positions = <32 33>;
+#             layers = <0>;
+#             require-prior-idle-ms = <50>;
+#         };
+# 
+#         combo_clipboard {
+#             bindings = <&kp LS(LG(V))>;
+#             key-positions = <34 31>;
+#             layers = <0>;
+#         };
+#     };
+# 
+#     macros {
+#         open_close_parentheses: open_close_parentheses {
+#             compatible = "zmk,behavior-macro";
+#             #binding-cells = <0>;
+#             bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT>;
+#             label = "OPEN_CLOSE_PARENTHESES";
+#         };
+# 
+#         open_close_braces: open_close_braces {
+#             compatible = "zmk,behavior-macro";
+#             #binding-cells = <0>;
+#             bindings = <&kp LEFT_BRACE &kp RIGHT_BRACE &kp LEFT>;
+#             label = "OPEN_CLOSE_BRACES";
+#         };
+# 
+#         open_close_brackets: open_close_brackets {
+#             compatible = "zmk,behavior-macro";
+#             #binding-cells = <0>;
+#             bindings = <&kp LEFT_BRACKET &kp RIGHT_BRACKET &kp LEFT>;
+#             label = "OPEN_CLOSE_BRACKETS";
+#         };
+#     };
+# 
+#     keymap {
+#         compatible = "zmk,keymap";
+# 
+#         default_layer {
+#             // -----------------------------------------------------------------------------------------
+#             // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |
+#             // |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |
+#             // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |
+#             //             | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+# 
+#             bindings = <
+#   &kp Q        &kp W           &kp E           &kp R             &kp T        &kp Y        &kp U              &kp I            &kp O            &kp P
+#   &hm LCTRL A  &hm LEFT_ALT S  &hm LEFT_GUI D  &hm LEFT_SHIFT F  &kp G        &kp H        &hm RIGHT_SHIFT J  &hm RIGHT_GUI K  &hm RIGHT_ALT L  &hm RCTRL SEMI
+#   &kp Z        &kp X           &kp C           &kp V             &kp B        &kp N        &kp M              &kp COMMA        &kp DOT          &kp FSLH
+#                                &kp LGUI        &kp BACKSPACE     &lt 2 TAB    &lt 1 ENTER  &kp SPACE          &kp RALT
+#             >;
+#         };
+# 
+#         lower_layer {
+#             // -----------------------------------------------------------------------------------------
+#             // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
+#             // |     |     |     |     |     |   | LFT | DWN |  UP | RGT |     |
+#             // |     |     |     |     |     |   |     |     |     |     |     |
+#             //             | GUI |     | SPC |   | ENT |     | ALT |
+# 
+#             bindings = <
+#   &kp N1       &kp N2  &kp N3    &kp N4  &kp N5       &kp N6    &kp N7          &kp UP_ARROW    &kp N9     &kp N0
+#   &kp GRAVE    &trans  &trans    &trans  &trans       &kp LEFT  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT  &kp APOSTROPHE
+#   &kp C_POWER  &trans  &trans    &trans  &trans       &trans    &trans          &trans          &trans     &kp LG(LC(SPACE))
+#                        &kp LGUI  &trans  &lt 3 ESC    &kp RET   &trans          &kp RALT
+#             >;
+# 
+#             label = "Navigation";
+#         };
+# 
+#         raise_layer {
+#             // -----------------------------------------------------------------------------------------
+#             // |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |
+#             // |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |
+#             // |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |
+#             //                    | GUI |     | SPC |   | ENT |     | ALT |
+# 
+#             bindings = <
+#   &kp TILDE        &trans       &kp AMPERSAND  &td_braces       &kp RIGHT_BRACE          &kp N7   &kp N8  &kp N9  &kp PLUS   &kp ASTERISK
+#   &kp EXCLAMATION  &kp AT       &kp HASH       &td_parentheses  &kp RIGHT_PARENTHESIS    &kp N4   &kp N5  &kp N6  &kp MINUS  &kp SLASH
+#   &kp DOLLAR       &kp PERCENT  &kp CARET      &td_brackets     &kp RIGHT_BRACKET        &kp N1   &kp N2  &kp N3  &kp DOT    &kp EQUAL
+#                                 &trans         &trans           &kp SPACE                &kp RET  &kp N0  &trans
+#             >;
+# 
+#             label = "Numbers and Symbols";
+#         };
+# 
+#         layer_3 {
+#             bindings = <
+#   &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans
+#   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans
+#   &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans
+#                               &trans        &trans        &trans          &trans  &trans  &trans
+#             >;
+#         };
+#     };
+# };
