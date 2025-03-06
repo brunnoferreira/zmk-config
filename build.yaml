@@ -23,17 +23,17 @@ include:
   - keyboard: Corne 42 nice!view
     board: nice_nano_v2
     shield: corne_left nice_view_adapter nice_view
-    cmake-args: -DEXTRA_CONF_FILE=../../config/corne-choc.conf
-    artifact-name: zmk-corne-42-niceview-left
+    cmake-args: -DEXTRA_CONF_FILE=../../config/corne.conf
+    artifact-name: corne-42-niceview-left
   - keyboard: Corne 42 nice!view
     board: nice_nano_v2
     shield: corne_right nice_view_adapter nice_view
-    cmake-args: -DEXTRA_CONF_FILE=../../config/corne-choc.conf
-    artifact-name: zmk-corne-42-niceview-right
+    cmake-args: -DEXTRA_CONF_FILE=../../config/corne.conf
+    artifact-name: corne-42-niceview-right
   - keyboard: Corne 42 nice!view
     board: nice_nano_v2
     shield: settings_reset
-    artifact-name: zmk-corne-42-niceview-settings-reset
+    artifact-name: corne-42-niceview-settings-reset
 
   # Chocofi nice!view Firmware
   # - keyboard: Chocofi nice!view
