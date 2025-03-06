@@ -9,8 +9,6 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
-    chosen { zmk,matrix_transform = &six_column_transform; };
-
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
