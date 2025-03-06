@@ -9,7 +9,7 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
-    chosen { zmk,matrix_transform = &five_column_transform; };
+    chosen { zmk,matrix_transform = &six_column_transform; };
 
     behaviors {
         hm: homerow_mods {
@@ -96,30 +96,30 @@
 
         default_layer {
             // -----------------------------------------------------------------------------------------
-            // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |
-            // |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |
-            // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |
+            // |  Q  |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |  Q  |
+            // |  Q  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  Q  |
+            // |  Q  |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |  Q  |
             //             | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-  &kp Q        &kp W           &kp E           &kp R             &kp T        &kp Y        &kp U              &kp I            &kp O            &kp P
-  &hm LCTRL A  &hm LEFT_ALT S  &hm LEFT_GUI D  &hm LEFT_SHIFT F  &kp G        &kp H        &hm RIGHT_SHIFT J  &hm RIGHT_GUI K  &hm RIGHT_ALT L  &hm RCTRL SEMI
-  &kp Z        &kp X           &kp C           &kp V             &kp B        &kp N        &kp M              &kp COMMA        &kp DOT          &kp FSLH
+  &trans       &kp Q        &kp W           &kp E           &kp R             &kp T        &kp Y        &kp U              &kp I            &kp O            &kp P            &trans
+  &trans       &hm LCTRL A  &hm LEFT_ALT S  &hm LEFT_GUI D  &hm LEFT_SHIFT F  &kp G        &kp H        &hm RIGHT_SHIFT J  &hm RIGHT_GUI K  &hm RIGHT_ALT L  &hm RCTRL SEMI   &trans
+  &trans       &kp Z        &kp X           &kp C           &kp V             &kp B        &kp N        &kp M              &kp COMMA        &kp DOT          &kp FSLH         &trans
                                &kp LGUI        &kp BACKSPACE     &lt 2 TAB    &lt 1 ENTER  &kp SPACE          &kp RALT
             >;
         };
 
         lower_layer {
             // -----------------------------------------------------------------------------------------
-            // |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |
-            // |     |     |     |     |     |   | LFT | DWN |  UP | RGT |     |
-            // |     |     |     |     |     |   |     |     |     |     |     |
+            // |  Q  |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |  Q  |
+            // |  Q  |     |     |     |     |     |   | LFT | DWN |  UP | RGT |     |  Q  |
+            // |  Q  |     |     |     |     |     |   |     |     |     |     |     |  Q  |
             //             | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-  &kp N1       &kp N2  &kp N3    &kp N4  &kp N5       &kp N6    &kp N7          &kp UP_ARROW    &kp N9     &kp N0
-  &kp GRAVE    &trans  &trans    &trans  &trans       &kp LEFT  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT  &kp APOSTROPHE
-  &kp C_POWER  &trans  &trans    &trans  &trans       &trans    &trans          &trans          &trans     &kp LG(LC(SPACE))
+  &trans       &kp N1       &kp N2  &kp N3    &kp N4  &kp N5       &kp N6    &kp N7          &kp UP_ARROW    &kp N9     &kp N0            &trans
+  &trans       &kp GRAVE    &trans  &trans    &trans  &trans       &kp LEFT  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT  &kp APOSTROPHE    &trans
+  &trans       &kp C_POWER  &trans  &trans    &trans  &trans       &trans    &trans          &trans          &trans     &kp LG(LC(SPACE)) &trans
                        &kp LGUI  &trans  &lt 3 ESC    &kp RET   &trans          &kp RALT
             >;
 
@@ -128,15 +128,15 @@
 
         raise_layer {
             // -----------------------------------------------------------------------------------------
-            // |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |
-            // |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |
-            // |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |
+            // |  Q  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  Q  |
+            // |  Q  |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  Q  |
+            // |  Q  |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  Q  |
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-  &kp TILDE        &trans       &kp AMPERSAND  &td_braces       &kp RIGHT_BRACE          &kp N7   &kp N8  &kp N9  &kp PLUS   &kp ASTERISK
-  &kp EXCLAMATION  &kp AT       &kp HASH       &td_parentheses  &kp RIGHT_PARENTHESIS    &kp N4   &kp N5  &kp N6  &kp MINUS  &kp SLASH
-  &kp DOLLAR       &kp PERCENT  &kp CARET      &td_brackets     &kp RIGHT_BRACKET        &kp N1   &kp N2  &kp N3  &kp DOT    &kp EQUAL
+  &trans       &kp TILDE        &trans       &kp AMPERSAND  &td_braces       &kp RIGHT_BRACE          &kp N7   &kp N8  &kp N9  &kp PLUS   &kp ASTERISK    &trans
+  &trans       &kp EXCLAMATION  &kp AT       &kp HASH       &td_parentheses  &kp RIGHT_PARENTHESIS    &kp N4   &kp N5  &kp N6  &kp MINUS  &kp SLASH       &trans
+  &trans       &kp DOLLAR       &kp PERCENT  &kp CARET      &td_brackets     &kp RIGHT_BRACKET        &kp N1   &kp N2  &kp N3  &kp DOT    &kp EQUAL       &trans
                                 &trans         &trans           &kp SPACE                &kp RET  &kp N0  &trans
             >;
 
