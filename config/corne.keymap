@@ -64,6 +64,11 @@
             key-positions = <37 40>;
             layers = <0>;
         };
+
+        GPT {
+            bindings = <&kp LC(LA(LG(LS(RETURN))))>;
+            key-positions = <39 37>;
+        };
     };
 
     macros {
