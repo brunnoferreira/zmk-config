@@ -49,38 +49,13 @@
             bindings = <&kp MINUS>, <&dash_arrow_right>;
         };
 
-        td_caps_word_f: td_caps_word_f {
+        hm_cw: homerow_mods_with_caps_word {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_CAPS_WORD_F";
-            #binding-cells = <0>;
-            bindings = <&kp F>, <&caps_word>;
-        };
-
-        hm_shift_f: hm_shift_f {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HM_SHIFT_F";
-            #binding-cells = <2>;
+            label = "HOMEROW_MODS_WITH_CAPS_WORD";
             tapping-term-ms = <175>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&td_caps_word_f>;
-
-            require-prior-idle-ms = <125>;
-        };
-
-        td_caps_word_j: td_caps_word_j {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_CAPS_WORD_J";
-            #binding-cells = <0>;
-            bindings = <&kp J>, <&caps_word>;
-        };
-
-        hm_shift_j: hm_shift_j {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HM_SHIFT_J";
-            #binding-cells = <2>;
-            tapping-term-ms = <175>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&td_caps_word_j>;
+            bindings = <&kp>;
+            hold_binding = <&kp>;
+            double_tap_binding = <&caps_word>; // Double tap triggers Caps Word
 
             require-prior-idle-ms = <125>;
         };
@@ -156,7 +131,7 @@
 
             bindings = <
 &kp GRAVE  &kp Q        &kp W           &kp E           &kp R                     &kp T        &kp Y        &kp U                      &kp I            &kp O            &kp P           &kp BACKSLASH
-&trans     &hm LCTRL A  &hm LEFT_ALT S  &hm LEFT_GUI D  &hm_shift_f LEFT_SHIFT 0  &kp G        &kp H        &hm_shift_j RIGHT_SHIFT 0  &hm RIGHT_GUI K  &hm RIGHT_ALT L  &hm RCTRL SEMI  &kp SQT
+&trans     &hm LCTRL A  &hm LEFT_ALT S  &hm LEFT_GUI D  &hm_cw LEFT_SHIFT F       &kp G        &kp H        &hm_cw RIGHT_SHIFT J       &hm RIGHT_GUI K  &hm RIGHT_ALT L  &hm RCTRL SEMI  &kp SQT
 &trans     &kp Z        &kp X           &kp C           &kp V                     &kp B        &kp N        &kp M                      &kp COMMA        &kp DOT          &kp FSLH        &trans
                                         &trans          &kp BACKSPACE             &lt 2 TAB    &lt 1 ENTER  &lt 4 SPACE                &kp RALT
             >;
