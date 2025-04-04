@@ -52,6 +52,7 @@
         hm_cw: homerow_mods_with_caps_word {
             compatible = "zmk,behavior-tap-dance";
             label = "HOMEROW_MODS_WITH_CAPS_WORD";
+            #binding-cells = <2>;
             tapping-term-ms = <175>;
             bindings = <&kp>;
             hold_binding = <&kp>;
