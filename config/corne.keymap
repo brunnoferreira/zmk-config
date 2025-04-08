@@ -67,15 +67,6 @@
             require-prior-idle-ms = <125>;
         };
 
-        hm_caps_word: homerow_mods_with_caps_word {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD Caps Word J";
-            tapping-term-ms = <175>;
-            bindings = <&kp>;
-            hold_binding = <&kp>;
-            double_tap_binding = <&caps_word>; // Double tap triggers Caps Word
-        };
-
         td_caps_word_j: td_caps_word_j {
             compatible = "zmk,behavior-tap-dance";
             label = "TD_CAPS_WORD_J";
