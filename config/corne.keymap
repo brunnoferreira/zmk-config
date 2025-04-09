@@ -54,6 +54,8 @@
             label = "TD_CAPS_WORD_F";
             #binding-cells = <0>;
             bindings = <&kp F>, <&caps_word>;
+
+            tapping-term-ms = <150>;
         };
 
         hm_shift_f: hm_shift_f {
@@ -61,10 +63,11 @@
             label = "HM_SHIFT_F";
             #binding-cells = <2>;
             tapping-term-ms = <175>;
-            flavor = "tap-unless-interrupted";
+            flavor = "tap-preferred";
             bindings = <&kp>, <&td_caps_word_f>;
 
             require-prior-idle-ms = <125>;
+            hold-while-undecided;
         };
 
         td_caps_word_j: td_caps_word_j {
@@ -72,6 +75,8 @@
             label = "TD_CAPS_WORD_J";
             #binding-cells = <0>;
             bindings = <&kp J>, <&caps_word>;
+
+            tapping-term-ms = <150>;
         };
 
         hm_shift_j: hm_shift_j {
@@ -79,10 +84,11 @@
             label = "HM_SHIFT_J";
             #binding-cells = <2>;
             tapping-term-ms = <175>;
-            flavor = "tap-unless-interrupted";
+            flavor = "tap-preferred";
             bindings = <&kp>, <&td_caps_word_j>;
 
             require-prior-idle-ms = <125>;
+            hold-while-undecided;
         };
     };
 
