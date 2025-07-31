@@ -151,6 +151,11 @@
             key-positions = <17 18>;
             layers = <0>;
         };
+
+        context-window-switcher {
+            bindings = <&kp LS(LA(LC(LG(SPACE))))>;
+            key-positions = <15 20>;
+        };
     };
 
     macros {
