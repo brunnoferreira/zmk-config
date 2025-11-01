@@ -117,6 +117,34 @@
             flavor = "balanced";
             tapping-term-ms = <175>;
         };
+
+        td_vmdd_prepare_contents: td_vmdd_prepare_contents {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_VMDD_PREPARE_CONTENTS";
+            #binding-cells = <0>;
+            bindings = <&none>, <&kp LG(LS(C))>;
+        };
+
+        td_vmdd_prepare_modifier: td_vmdd_prepare_modifier {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_VMDD_PREPARE_MODIFIER";
+            #binding-cells = <0>;
+            bindings = <&none>, <&kp LG(LS(LA(C)))>;
+        };
+
+        td_vmdd_search_content: td_vmdd_search_content {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_VMDD_SEARCH_CONTENT";
+            #binding-cells = <0>;
+            bindings = <&none>, <&kp LA(LG(LC(SPACE)))>;
+        };
+
+        td_vmdd_toggle_layer: td_vmdd_toggle_layer {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_VMDD_TOGGLE_LAYER";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS>, <&tog 5>;
+        };
     };
 
     combos {
@@ -206,10 +234,10 @@
             //             | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp GRAVE       &kp Q        &kp W           &kp E           &kp R             &kp T        &kp Y        &kp U              &kp I            &kp O            &kp P                                &kp BACKSLASH
-&kp UNDERSCORE  &hm LCTRL A  &hm LEFT_ALT S  &hm LEFT_GUI D  &hm LEFT_SHIFT F  &kp G        &kp H        &hm RIGHT_SHIFT J  &hm RIGHT_GUI K  &hm RIGHT_ALT L  &hm RCTRL SEMI                       &kp SQT
-&kp MINUS       &kp Z        &kp X           &kp C           &kp V             &kp B        &kp N        &kp M              &kp COMMA        &kp DOT          &td_kotlin_ternary_operator 0 SLASH  &td_emoji
-                                             &trans          &kp BACKSPACE     &lt 2 TAB    &lt 1 ENTER  &lt 4 SPACE        &kp RALT
+&kp GRAVE              &kp Q        &kp W           &kp E           &kp R             &kp T        &kp Y        &kp U              &kp I            &kp O            &kp P                                &kp BACKSLASH
+&kp UNDERSCORE         &hm LCTRL A  &hm LEFT_ALT S  &hm LEFT_GUI D  &hm LEFT_SHIFT F  &kp G        &kp H        &hm RIGHT_SHIFT J  &hm RIGHT_GUI K  &hm RIGHT_ALT L  &hm RCTRL SEMI                       &kp SQT
+&td_vmdd_toggle_layer  &kp Z        &kp X           &kp C           &kp V             &kp B        &kp N        &kp M              &kp COMMA        &kp DOT          &td_kotlin_ternary_operator 0 SLASH  &td_emoji
+                                                    &trans          &kp BACKSPACE     &lt 2 TAB    &lt 1 ENTER  &lt 4 SPACE        &kp RALT
             >;
         };
 
@@ -266,6 +294,15 @@
             >;
 
             label = "media";
+        };
+
+        VMdD {
+            bindings = <
+&trans                 &trans  &trans  &trans                     &trans  &trans    &trans  &trans  &trans                     &trans  &trans  &trans
+&trans                 &trans  &trans  &trans                     &trans  &trans    &trans  &trans  &trans                     &trans  &trans  &trans
+&td_vmdd_toggle_layer  &trans  &trans  &trans                     &trans  &trans    &trans  &trans  &trans                     &trans  &trans  &td_vmdd_search_content
+                                       &td_vmdd_prepare_contents  &trans  &trans    &trans  &trans  &td_vmdd_prepare_modifier
+            >;
         };
     };
 };
