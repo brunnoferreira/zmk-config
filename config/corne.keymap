@@ -153,20 +153,17 @@
         combo_caps_word {
             bindings = <&caps_word>;
             key-positions = <16 19>;
-            layers = <0>;
         };
 
         combo_alfred {
             bindings = <&kp LC(SPACE)>;
             key-positions = <38 39>;
-            layers = <0>;
             require-prior-idle-ms = <50>;
         };
 
         combo_clipboard {
             bindings = <&kp LS(LG(V))>;
             key-positions = <37 40>;
-            layers = <0>;
         };
 
         GPT {
@@ -177,7 +174,6 @@
         combo_caps_lock {
             bindings = <&kp CAPSLOCK>;
             key-positions = <17 18>;
-            layers = <0>;
         };
 
         context-window-switcher {
