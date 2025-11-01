@@ -299,6 +299,8 @@
 &td_vmdd_toggle_layer  &trans  &trans  &trans                     &trans  &trans    &trans  &trans  &trans                     &trans  &trans  &td_vmdd_search_content
                                        &td_vmdd_prepare_contents  &trans  &trans    &trans  &trans  &td_vmdd_prepare_modifier
             >;
+
+            label = "VMdD";
         };
     };
 };
