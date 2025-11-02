@@ -180,6 +180,11 @@
             bindings = <&kp LS(LA(LC(LG(SPACE))))>;
             key-positions = <15 20>;
         };
+
+        combo_dash {
+            bindings = <&kp MINUS>;
+            key-positions = <18 19>;
+        };
     };
 
     macros {
