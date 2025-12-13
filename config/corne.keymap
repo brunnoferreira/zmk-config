@@ -185,6 +185,12 @@
             bindings = <&kp MINUS>;
             key-positions = <18 19>;
         };
+
+        combo_clipboard_vmdd {
+            bindings = <&vmdd_snippets>;
+            key-positions = <37 40>;
+            layers = <5>;
+        };
     };
 
     macros {
@@ -221,6 +227,14 @@
             #binding-cells = <0>;
             bindings = <&kp QUESTION &kp COLON>;
             label = "KOTLIN_TERNARY_OPERATOR";
+        };
+
+        vmdd_snippets: vmdd_snippets {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LG(V)) &kp V &kp ENTER>;
+            label = "VMDD_SNIPPETS";
+            wait-ms = <100>;
         };
     };
 
