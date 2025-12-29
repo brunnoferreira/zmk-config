@@ -22,14 +22,14 @@ include:
   # Corne-42 GLP nice!view Firmware
   - keyboard: Corne 42 GLP nice!view
     board: nice_nano
-    # shield: corne_left nice_view_adapter nice_view_gem
-    shield: corne_left nice_view_adapter nice_epaper
+    shield: corne_left nice_view_adapter nice_view_gem
+    # shield: corne_left nice_view_adapter nice_epaper
     cmake-args: -DEXTRA_CONF_FILE=../../config/corne_glp.conf
     artifact-name: corne-42-glp-niceview-left
   - keyboard: Corne 42 GLP nice!view
     board: nice_nano
-    # shield: corne_right nice_view_adapter nice_view_gem
-    shield: corne_right nice_view_adapter nice_epaper
+    shield: corne_right nice_view_adapter nice_view_gem
+    # shield: corne_right nice_view_adapter nice_epaper
     cmake-args: -DEXTRA_CONF_FILE=../../config/corne_glp.conf
     artifact-name: corne-42-glp-niceview-right
   - keyboard: Corne 42 GLP nice!view
@@ -40,14 +40,14 @@ include:
   # Corne-42 Choc nice!view Firmware
   - keyboard: Corne 42 Choc nice!view
     board: nice_nano
-    # shield: corne_left nice_view_adapter nice_view_gem
-    shield: corne_left nice_view_adapter nice_epaper
+    shield: corne_left nice_view_adapter nice_view_gem
+    # shield: corne_left nice_view_adapter nice_epaper
     cmake-args: -DEXTRA_CONF_FILE=../../config/corne_choc.conf
     artifact-name: corne-42-choc-niceview-left
   - keyboard: Corne 42 Choc nice!view
     board: nice_nano
-    # shield: corne_right nice_view_adapter nice_view_gem
-    shield: corne_right nice_view_adapter nice_epaper
+    shield: corne_right nice_view_adapter nice_view_gem
+    # shield: corne_right nice_view_adapter nice_epaper
     cmake-args: -DEXTRA_CONF_FILE=../../config/corne_choc.conf
     artifact-name: corne-42-choc-niceview-right
   - keyboard: Corne 42 Choc nice!view
