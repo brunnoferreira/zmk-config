@@ -1,138 +1,82 @@
-{
-  "id": "cornix",
-  "name": "cornix",
-  "layouts": {
-    "LAYOUT_50": {
-      "layout": [
-        { "row": 0, "col":  0, "x":                 0, "y":  0.5000000000000001, "label":           "0,0\n\n\n\n1" },
-        { "row": 0, "col":  1, "x":                 1, "y":  0.5000000000000001, "label":                    "0,1" },
-        { "row": 0, "col":  2, "x":                 2, "y":                0.25, "label":                    "0,2" },
-        { "row": 0, "col":  3, "x":                 3, "y":                   0, "label":                    "0,3" },
-        { "row": 0, "col":  4, "x":                 4, "y":                0.25, "label":                    "0,4" },
-        { "row": 0, "col":  5, "x":                 5, "y":  0.5000000000000001, "label":                    "0,5" },
-        { "row": 0, "col":  8, "x":               8.5, "y":  0.5000000000000001, "label":                    "4,5" },
-        { "row": 0, "col":  9, "x":               9.5, "y": 0.30000000000000004, "label":                    "4,4" },
-        { "row": 0, "col": 10, "x":              10.5, "y":                   0, "label":                    "4,3" },
-        { "row": 0, "col": 11, "x":              11.5, "y": 0.33000000000000007, "label":                    "4,2" },
-        { "row": 0, "col": 12, "x":              12.5, "y":  0.5000000000000001, "label":                    "4,1" },
-        { "row": 0, "col": 13, "x":              13.5, "y":  0.5000000000000001, "label":                    "4,0" },
+/*                                      52 KEY MATRIX / LAYOUT MAPPING
 
-        { "row": 1, "col":  0, "x":                 0, "y":                 1.5, "label":                    "1,0" },
-        { "row": 1, "col":  1, "x":                 1, "y":                 1.5, "label":                    "1,1" },
-        { "row": 1, "col":  2, "x":                 2, "y":                1.25, "label":                    "1,2" },
-        { "row": 1, "col":  3, "x":                 3, "y":                   1, "label":                    "1,3" },
-        { "row": 1, "col":  4, "x":                 4, "y":                1.25, "label":                    "1,4" },
-        { "row": 1, "col":  5, "x":                 5, "y":                 1.5, "label":                    "1,5" },
-        { "row": 1, "col":  8, "x":               8.5, "y":                 1.5, "label":                    "5,5" },
-        { "row": 1, "col":  9, "x":               9.5, "y":                 1.3, "label":                    "5,4" },
-        { "row": 1, "col": 10, "x":              10.5, "y":                   1, "label":                    "5,3" },
-        { "row": 1, "col": 11, "x":              11.5, "y":  1.3299999999999998, "label":                    "5,2" },
-        { "row": 1, "col": 12, "x":              12.5, "y":                 1.5, "label":                    "5,1" },
-        { "row": 1, "col": 13, "x":              13.5, "y":                 1.5, "label":                    "5,0" },
+  ╭────────────────────────╮               ╭────────────────────────╮
+  │  0   1   2   3   4   5 │               │  6   7   8   9  10  11 │
+  │ 12  13  14  15  16  17 ╰──╮         ╭──╯ 18  19  20  21  22  23 │
+  │ 24  25  26  27  28  29  30╰────┬────╯31  32  33  34  35  36  37 │
+  │ 38  39  40      41  42  43     │     44  45  46      47  48  49 │
+  ╰────────────────────────────────┴────────────────────────────────╯
+ ╭────────────────────────────╮         ╭────────────────────────────╮
+ │ LT5 LT4 LT3 LT2 LT1 LT0 LH5│         │RH5 RT0 RT1 RT2 RT3 RT4 RT5 │
+ │ LM5 LM4 LM3 LM2 LM1 LM0 LH4│         │RH4 RM0 RM1 RM2 RM3 RM4 RM5 │
+ │ LB5 LB4 LB3 LB2 LB1 LB0 LH3╰────┬────╯RH3 RB0 RB1 RB2 RB3 RB4 RB5 │
+ │ LP2 LP1 LP0╭───╮LH2 LH1 LH0     │     RH0 RH1 RH2╭───╮RP0 RP1 RP2 │
+ ╰────────────╯   ╰────────────────┴────────────────╯   ╰────────────╯
+ T : Top
+ M : Middle
+ B : Bottom
+ H : Hand
+ P : Palm
+*/
 
-        { "row": 2, "col":  0, "x":                 0, "y":                2.55, "label":                    "2,0" },
-        { "row": 2, "col":  1, "x":                 1, "y":                2.55, "label":                    "2,1" },
-        { "row": 2, "col":  2, "x":                 2, "y":                2.25, "label":                    "2,2" },
-        { "row": 2, "col":  3, "x":                 3, "y":                   2, "label":                    "2,3" },
-        { "row": 2, "col":  4, "x":                 4, "y":                2.25, "label":                    "2,4" },
-        { "row": 2, "col":  5, "x":                 5, "y":                2.55, "label":                    "2,5" },
-        { "row": 2, "col":  6, "x":                 6, "y":                   2, "label":                    "2,6" },
-        { "row": 2, "col":  7, "x":               7.5, "y":                   2, "label":                    "5,6" },
-        { "row": 2, "col":  8, "x":               8.5, "y":                2.55, "label":                    "6,5" },
-        { "row": 2, "col":  9, "x":               9.5, "y":                 2.3, "label":                    "6,4" },
-        { "row": 2, "col": 10, "x":              10.5, "y":                   2, "label":                    "6,3" },
-        { "row": 2, "col": 11, "x":              11.5, "y":                2.33, "label":                    "6,2" },
-        { "row": 2, "col": 12, "x":              12.5, "y":                2.55, "label":                    "6,1" },
-        { "row": 2, "col": 13, "x":              13.5, "y":                2.55, "label":                    "6,0" },
+#pragma once
 
-        { "row": 3, "col":  0, "x":                 0, "y":                3.55, "label":                    "3,0" },
-        { "row": 3, "col":  1, "x":                 1, "y":                3.55, "label":                    "3,1" },
-        { "row": 3, "col":  2, "x":                 2, "y":                 3.3, "label":                    "3,2" },
-        { "row": 3, "col":  3, "x":               3.5, "y":                3.63, "label":                    "3,3" },
-        { "row": 3, "col":  4, "x":               4.5, "y":                 3.7, "label":                    "3,4", "r":  11.93, "rx":    5, "ry": 4.75 },
-        { "row": 3, "col":  5, "x":               5.5, "y":  3.6500000000000004, "label":                    "3,5", "r":     23, "rx":    5, "ry": 4.75 },
-        { "row": 3, "col":  8, "x": 7.640000000000001, "y":   5.380000000000001, "label":                    "7,5", "r":    -23, "rx":    5, "ry": 4.75 },
-        { "row": 3, "col":  9, "x":                 9, "y":                3.75, "label":                    "7,4", "r": -11.93, "rx": 9.25, "ry": 4.75 },
-        { "row": 3, "col": 10, "x":                10, "y":                3.63, "label":                    "7,3" },
-        { "row": 3, "col": 11, "x":              11.5, "y":                3.38, "label":                    "7,2" },
-        { "row": 3, "col": 12, "x":              12.5, "y":                3.55, "label":                    "7,1" },
-        { "row": 3, "col": 13, "x":              13.5, "y":                3.55, "label":                    "7,0" }
-      ]
-    },
-    "LAYOUT_42": {
-      "layout": [
-        { "row": 0, "col":  0, "x":                 0, "y":  0.5000000000000001, "label":           "0,0\n\n\n\n1" },
-        { "row": 0, "col":  1, "x":                 1, "y":  0.5000000000000001, "label":                    "0,1" },
-        { "row": 0, "col":  2, "x":                 2, "y":                0.25, "label":                    "0,2" },
-        { "row": 0, "col":  3, "x":                 3, "y":                   0, "label":                    "0,3" },
-        { "row": 0, "col":  4, "x":                 4, "y":                0.25, "label":                    "0,4" },
-        { "row": 0, "col":  5, "x":                 5, "y":  0.5000000000000001, "label":                    "0,5" },
-        { "row": 0, "col":  8, "x":               8.5, "y":  0.5000000000000001, "label":                    "4,5" },
-        { "row": 0, "col":  9, "x":               9.5, "y": 0.30000000000000004, "label":                    "4,4" },
-        { "row": 0, "col": 10, "x":              10.5, "y":                   0, "label":                    "4,3" },
-        { "row": 0, "col": 11, "x":              11.5, "y": 0.33000000000000007, "label":                    "4,2" },
-        { "row": 0, "col": 12, "x":              12.5, "y":  0.5000000000000001, "label":                    "4,1" },
-        { "row": 0, "col": 13, "x":              13.5, "y":  0.5000000000000001, "label":                    "4,0" },
+#define LT0  5  // left-top row
+#define LT1  4
+#define LT2  3
+#define LT3  2
+#define LT4  1
+#define LT5  0
 
-        { "row": 1, "col":  0, "x":                 0, "y":                 1.5, "label":                    "1,0" },
-        { "row": 1, "col":  1, "x":                 1, "y":                 1.5, "label":                    "1,1" },
-        { "row": 1, "col":  2, "x":                 2, "y":                1.25, "label":                    "1,2" },
-        { "row": 1, "col":  3, "x":                 3, "y":                   1, "label":                    "1,3" },
-        { "row": 1, "col":  4, "x":                 4, "y":                1.25, "label":                    "1,4" },
-        { "row": 1, "col":  5, "x":                 5, "y":                 1.5, "label":                    "1,5" },
-        { "row": 1, "col":  8, "x":               8.5, "y":                 1.5, "label":                    "5,5" },
-        { "row": 1, "col":  9, "x":               9.5, "y":                 1.3, "label":                    "5,4" },
-        { "row": 1, "col": 10, "x":              10.5, "y":                   1, "label":                    "5,3" },
-        { "row": 1, "col": 11, "x":              11.5, "y":  1.3299999999999998, "label":                    "5,2" },
-        { "row": 1, "col": 12, "x":              12.5, "y":                 1.5, "label":                    "5,1" },
-        { "row": 1, "col": 13, "x":              13.5, "y":                 1.5, "label":                    "5,0" },
+#define RT0  6  // right-top row
+#define RT1  7
+#define RT2  8
+#define RT3  9
+#define RT4 10
+#define RT5 11
 
-        { "row": 2, "col":  0, "x":                 0, "y":                2.55, "label":                    "2,0" },
-        { "row": 2, "col":  1, "x":                 1, "y":                2.55, "label":                    "2,1" },
-        { "row": 2, "col":  2, "x":                 2, "y":                2.25, "label":                    "2,2" },
-        { "row": 2, "col":  3, "x":                 3, "y":                   2, "label":                    "2,3" },
-        { "row": 2, "col":  4, "x":                 4, "y":                2.25, "label":                    "2,4" },
-        { "row": 2, "col":  5, "x":                 5, "y":                2.55, "label":                    "2,5" },
-        { "row": 2, "col":  6, "x":                 6, "y":                   2, "label":                    "2,6" },
-        { "row": 2, "col":  7, "x":               7.5, "y":                   2, "label":                    "5,6" },
-        { "row": 2, "col":  8, "x":               8.5, "y":                2.55, "label":                    "6,5" },
-        { "row": 2, "col":  9, "x":               9.5, "y":                 2.3, "label":                    "6,4" },
-        { "row": 2, "col": 10, "x":              10.5, "y":                   2, "label":                    "6,3" },
-        { "row": 2, "col": 11, "x":              11.5, "y":                2.33, "label":                    "6,2" },
-        { "row": 2, "col": 12, "x":              12.5, "y":                2.55, "label":                    "6,1" },
-        { "row": 2, "col": 13, "x":              13.5, "y":                2.55, "label":                    "6,0" },
+#define LM0 17  // left-middle row
+#define LM1 16
+#define LM2 15
+#define LM3 14
+#define LM4 13
+#define LM5 12
 
-        { "row": 3, "col":  0, "x":                 0, "y":                3.55, "label":                    "3,0" },
-        { "row": 3, "col":  1, "x":                 1, "y":                3.55, "label":                    "3,1" },
-        { "row": 3, "col":  2, "x":                 2, "y":                 3.3, "label":                    "3,2" },
-        { "row": 3, "col":  3, "x":               3.5, "y":                3.63, "label":                    "3,3" },
-        { "row": 3, "col":  4, "x":               4.5, "y":                 3.7, "label":                    "3,4", "r":  11.93, "rx":    5, "ry": 4.75 },
-        { "row": 3, "col":  5, "x":               5.5, "y":  3.6500000000000004, "label":                    "3,5", "r":     23, "rx":    5, "ry": 4.75 },
-        { "row": 3, "col":  8, "x": 7.640000000000001, "y":   5.380000000000001, "label":                    "7,5", "r":    -23, "rx":    5, "ry": 4.75 },
-        { "row": 3, "col":  9, "x":                 9, "y":                3.75, "label":                    "7,4", "r": -11.93, "rx": 9.25, "ry": 4.75 },
-        { "row": 3, "col": 10, "x":                10, "y":                3.63, "label":                    "7,3" },
-        { "row": 3, "col": 11, "x":              11.5, "y":                3.38, "label":                    "7,2" },
-        { "row": 3, "col": 12, "x":              12.5, "y":                3.55, "label":                    "7,1" },
-        { "row": 3, "col": 13, "x":              13.5, "y":                3.55, "label":                    "7,0" }
-      ]
-    }
-  },
-  "sensors": [
-        {
-          "ref": "left_encoder",
-          "name": "encoder_left",
-          "identifier": "encoder_left",
-          "compatible": "alps,ec11",
-          "label": "LEFT_ENCODER",
-          "enabled": true 
-        },
-        {
-          "ref": "right_encoder",
-          "name": "encoder_right",
-          "identifier": "encoder_right",
-          "compatible": "alps,ec11",
-          "label": "RIGHT_ENCODER",
-          "enabled": true
-        }
-      ]
-}
+#define RM0 18  // right-middle row
+#define RM1 19
+#define RM2 20
+#define RM3 21
+#define RM4 22
+#define RM5 23
+
+#define LB0 29  // left-bottom row
+#define LB1 28
+#define LB2 27
+#define LB3 26
+#define LB4 25
+#define LB5 24
+
+#define RB0 32  // right-bottom row
+#define RB1 33
+#define RB2 34
+#define RB3 35
+#define RB4 36
+#define RB5 37
+
+#define LH0 43  // left thumb keys
+#define LH1 42
+#define LH2 41
+#define LH3 30
+
+#define RH0 44  // right thumb keys
+#define RH1 45
+#define RH2 46
+#define RH3 31
+
+#define LP0 40  // left-palm keys
+#define LP1 41
+#define LP2 42
+
+#define RP0 49  // right-paml keys
+#define RP1 50
+#define RP2 51
