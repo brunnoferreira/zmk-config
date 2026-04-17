@@ -5,6 +5,12 @@ manifest:
     # Custom Shield
     - name: m165437
       url-base: https://github.com/M165437
+    # Cornix
+    - name: cornix-shield
+    url-base: https://github.com/hitsmaxft
+    # Urob
+    - name: urob
+    url-base: https://github.com/urob
     # Custom Shield (nice_oled and nice_epaper)
     # - name: mctechnology17
     #   url-base: https://github.com/mctechnology17
