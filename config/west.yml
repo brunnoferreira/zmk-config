@@ -26,7 +26,7 @@ manifest:
     # Cornix
     - name: zmk-keyboard-cornix
       remote: cornix-shield
-      revision: main
+      revision: v2.6.8
     # Urob
     - name: zmk-helpers
       remote: urob
