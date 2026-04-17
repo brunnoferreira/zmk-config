@@ -264,7 +264,7 @@
             bindings = <
 &trans         &trans  &trans  &trans  &trans  &trans                     &trans   &trans    &kp UP    &trans     &trans  &trans
 &trans         &trans  &trans  &trans  &trans  &trans                     &trans   &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
-&kp RS(RC(Q))  &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans   &trans    &trans    &trans     &trans  &kp LS(LC(SPACE))
+&kp RC(RG(Q))  &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans   &trans    &trans    &trans     &trans  &kp LS(LC(SPACE))
 &trans         &trans  &trans  &trans  &trans  &lt 3 ESC                  &kp RET  &trans    &trans    &trans     &trans  &trans
             >;
         };
