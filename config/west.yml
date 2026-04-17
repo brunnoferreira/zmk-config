@@ -7,10 +7,10 @@ manifest:
       url-base: https://github.com/M165437
     # Cornix
     - name: cornix-shield
-    url-base: https://github.com/hitsmaxft
+      url-base: https://github.com/hitsmaxft
     # Urob
     - name: urob
-    url-base: https://github.com/urob
+      url-base: https://github.com/urob
     # Custom Shield (nice_oled and nice_epaper)
     # - name: mctechnology17
     #   url-base: https://github.com/mctechnology17
@@ -23,6 +23,14 @@ manifest:
     - name: nice-view-gem
       remote: m165437
       revision: v0.3.0
+    # Cornix
+    - name: zmk-keyboard-cornix
+      remote: cornix-shield
+      revision: main
+    # Urob
+    - name: zmk-helpers
+      remote: urob
+      revision: main
     # Custom Shield (nice_oled and nice_epaper)
     # - name: zmk-nice-oled
     #   remote: mctechnology17
