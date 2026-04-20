@@ -271,10 +271,10 @@
 
         numbers {
             bindings = <
-&trans  &trans                                         &trans     &kp AMPS   &kp LBRC              &kp RBRC                               &kp N7   &mt LC(LG(N8)) N8  &mt LC(LA(N9)) N9  &mt LC(LA(O)) PLUS    &kp ASTERISK  &trans
-&trans  &td_kotlin_not_equal_comparison 0 EXCLAMATION  &kp AT     &kp HASH   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS                  &kp N4   &kp N5             &kp N6             &td_dash_arrow_right  &kp FSLH      &trans
-&trans  &kp DLLR                                       &kp PRCNT  &kp CARET  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &trans  &trans  &kp N1   &kp N2             &kp N3             &kp DOT               &kp EQUAL     &trans
-&trans  &trans                                         &trans     &trans     &trans                &kp SPACE                              &kp RET  &kp N0             &trans             &trans                &trans        &trans
+&trans  &trans                                         &trans     &kp AMPS   &kp LBRC              &kp RBRC                               &kp N7   &mt LC(LG(U)) N8  &mt LC(LA(I)) N9  &mt LC(LA(O)) PLUS    &kp ASTERISK  &trans
+&trans  &td_kotlin_not_equal_comparison 0 EXCLAMATION  &kp AT     &kp HASH   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS                  &kp N4   &kp N5            &kp N6            &td_dash_arrow_right  &kp FSLH      &trans
+&trans  &kp DLLR                                       &kp PRCNT  &kp CARET  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &trans  &trans  &kp N1   &kp N2            &kp N3            &kp DOT               &kp EQUAL     &trans
+&trans  &trans                                         &trans     &trans     &trans                &kp SPACE                              &kp RET  &kp N0            &trans            &trans                &trans        &trans
             >;
         };
 
