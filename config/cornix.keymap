@@ -9,13 +9,13 @@
 
 // tap windows for ctl alt and gui
 
-#define HM_TAPPING_TERM 250
-#define HM_TAPPING_REPEAT 210
+#define HM_TAPPING_TERM 175
+#define HM_TAPPING_REPEAT 200
 
 // quick tapping for shift
 
-#define HM_TAPPING_TERM_FAST 200
-#define HM_PRIOR_IDLE 70
+#define HM_TAPPING_TERM_FAST 175
+#define HM_PRIOR_IDLE 100
 #define BASE 0
 #define WIN 1
 #define LOWER 2
