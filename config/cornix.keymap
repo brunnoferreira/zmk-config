@@ -9,13 +9,13 @@
 
 // tap windows for ctl alt and gui
 
-#define HM_TAPPING_TERM 175
+#define HM_TAPPING_TERM 280
 #define HM_TAPPING_REPEAT 200
 
 // quick tapping for shift
 
-#define HM_TAPPING_TERM_FAST 175
-#define HM_PRIOR_IDLE 70
+#define HM_TAPPING_TERM_FAST 200
+#define HM_PRIOR_IDLE 150
 #define BASE 0
 #define WIN 1
 #define LOWER 2
@@ -50,9 +50,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
-            flavor = "tap-preferred";
+            flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <200>;                // repeat on tap-into-hold
+            quick-tap-ms = <175>;                // repeat on tap-into-hold
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
             hold-trigger-key-positions = <KEYS_R KEYS_T>;
             hold-trigger-on-release;
@@ -63,9 +63,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
-            flavor = "tap-preferred";
+            flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <200>;
+            quick-tap-ms = <175>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
             hold-trigger-on-release;
@@ -80,11 +80,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
-            //flavor = "balanced";
-
-            flavor = "tap-preferred";
+            flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM_FAST>;
-            quick-tap-ms = <200>;
+            quick-tap-ms = <175>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
             hold-trigger-key-positions = <KEYS_R KEYS_T>;
             hold-trigger-on-release;
@@ -95,9 +93,9 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
-            flavor = "tap-preferred";
+            flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM_FAST>;
-            quick-tap-ms = <200>;
+            quick-tap-ms = <175>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
 
@@ -131,9 +129,24 @@
             #binding-cells = <2>;
             bindings = <&mo>, <&kp>;
 
+            // tap-preferred: protects taps (e.g. SPACE) from accidentally
+            // engaging the layer during fast typing rolls.
             flavor = "tap-preferred";
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <200>;
+        };
+
+        lt_hold: layer_tap_hold {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+
+            // hold-preferred: the layer engages the instant the next key is
+            // pressed, so symbols/numbers (e.g. "(") never fall through to the
+            // base layer. Use for thumbs you hold-and-type-on.
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
         };
 
         td_dash_arrow_right: td_dash_arrow_right {
@@ -254,7 +267,7 @@
 &kp GRAVE       &kp Q          &kp W         &kp E         &kp R                &kp T                    &kp Y        &kp U                &kp I         &kp O         &kp P                                &kp BSLH
 &kp UNDERSCORE  &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                    &kp H        &hm_shift_r RSHFT J  &hm_r RGUI K  &hm_r RALT L  &hm_r RCTRL SEMI                     &kp SQT
 &trans          &kp Z          &kp X         &kp C         &kp V                &kp B      &none  &none  &kp N        &kp M                &kp COMMA     &kp DOT       &td_kotlin_ternary_operator 0 SLASH  &td_emoji
-&none           &none          &none         &mo 9         &kp BACKSPACE        &lt 2 TAB                &lt 1 ENTER  &lt 4 SPACE          &trans        &none         &none                                &none
+&none           &none          &none         &mo 9         &kp BACKSPACE        &lt_hold 2 TAB           &lt_hold 1 ENTER  &lt 4 SPACE     &trans        &none         &none                                &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -265,7 +278,7 @@
 &trans         &trans  &trans  &trans  &trans  &trans                     &trans   &trans    &kp UP    &trans     &trans  &trans
 &trans         &trans  &trans  &trans  &trans  &trans                     &trans   &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
 &kp RC(RG(Q))  &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans   &trans    &trans    &trans     &trans  &kp LS(LC(SPACE))
-&trans         &trans  &trans  &trans  &trans  &lt 3 ESC                  &kp RET  &trans    &trans    &trans     &trans  &trans
+&trans         &trans  &trans  &trans  &trans  &lt_hold 3 ESC             &kp RET  &trans    &trans    &trans     &trans  &trans
             >;
         };
 
