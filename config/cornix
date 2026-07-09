@@ -1,0 +1,17 @@
+CONFIG_ZMK_KEYBOARD_NAME="Cornix LP"
+CONFIG_BT_DEVICE_NAME="Cornix LP"
+
+# Boost BT Power (Due to Metal Case)
+CONFIG_BT_CTLR_TX_PWR_PLUS_8=y
+# CONFIG_ZMK_BLE_EXPERIMENTAL_FEATURES=y
+
+# Helps some macOS Bluetooth chipsets re-establish a link after going out of
+# range. Harmless on Apple Silicon (throughput drop is irrelevant for a keyboard).
+# CONFIG_BT_CTLR_PHY_2M=n
+
+# Escalation only — uncomment if disconnects STILL persist after the above.
+# Forces the internal RC low-frequency oscillator instead of an external 32kHz
+# crystal. Custom boards like the Cornix sometimes ship a marginal/faulty crystal,
+# and LF-clock drift causes exactly this "drops and won't reconnect" pattern.
+# Small power/timing cost, so only enable if needed.
+# CONFIG_CLOCK_CONTROL_NRF_K32SRC_RC=y
