@@ -124,6 +124,22 @@
             quick-tap-ms = <200>;
         };
 
+        /*
+         * Used by the D+F / J+K paren combos below.
+         * hold-preferred: fires the hold the instant another key is pressed
+         * while still held, so Cmd+Shift engages immediately when you press
+         * an arrow key to select — no need to wait out tapping-term-ms.
+         */
+
+        combo_ht: combo_ht {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+        };
+
         lt: layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -228,9 +244,25 @@
             key-positions = <18 19>;
         };
 
-        combo_left_parenthesis {
-            bindings = <&kp LEFT_PARENTHESIS>;
-            key-positions = <16 17>;
+        combo_paren_open {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            key-positions = <15 16>;                          // D + F
+            bindings = <&combo_ht LS(LGUI) LEFT_PARENTHESIS>;
+        };
+
+        combo_paren_close {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <100>;
+            key-positions = <19 20>;                          // J + K
+            bindings = <&combo_ht LS(LGUI) RIGHT_PARENTHESIS>;
+        };
+
+        combo_paren_pair {
+            timeout-ms = <60>;
+            require-prior-idle-ms = <100>;
+            key-positions = <15 16 19 20>;                    // D + F + J + K
+            bindings = <&paren_pair>;
         };
 
         combo_left_bracket {
@@ -245,6 +277,13 @@
     };
 
     macros {
+        paren_pair: paren_pair {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT>;
+            label = "PAREN_PAIR";
+        };
+
         dash_arrow_right: dash_arrow_right {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
