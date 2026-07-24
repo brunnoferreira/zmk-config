@@ -323,7 +323,7 @@
 &kp GRAVE       &kp Q          &kp W         &kp E         &kp R                &kp T                         &kp Y             &kp U                &kp I         &kp O         &kp P                                &kp BSLH
 &kp UNDERSCORE  &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                         &kp H             &hm_shift_r RSHFT J  &hm_r RGUI K  &hm_r RALT L  &hm_r RCTRL SEMI                     &kp SQT
 &trans          &kp Z          &kp X         &kp C         &kp V                &kp B           &none  &none  &kp N             &kp M                &kp COMMA     &kp DOT       &td_kotlin_ternary_operator 0 SLASH  &td_emoji
-&none           &none          &none         &mo 9         &kp BACKSPACE        &lt_hold 2 TAB                &lt_hold 1 ENTER  &lt 4 SPACE          &trans        &none         &none                                &none
+&none           &none          &none         &mo 9         &kp BACKSPACE        &lt_hold 2 TAB                &lt_hold 1 ENTER  &lt 4 SPACE          &mo 9         &none         &none                                &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -423,10 +423,10 @@
 
         mouse {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans          &trans          &trans           &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &trans          &trans          &trans           &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                            &trans  &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                            &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &bootloader  &bootloader  &trans  &trans          &trans          &trans           &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                            &trans  &trans          &trans          &trans           &trans  &trans
             >;
         };
     };
