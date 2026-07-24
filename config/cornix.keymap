@@ -245,23 +245,23 @@
         };
 
         combo_paren_open {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <100>;
-            key-positions = <15 16>;                          // D + F
+            timeout-ms = <18>;
+            require-prior-idle-ms = <70>;
+            key-positions = <15 16>;
             bindings = <&combo_ht LS(LGUI) LEFT_PARENTHESIS>;
         };
 
         combo_paren_close {
-            timeout-ms = <50>;
-            require-prior-idle-ms = <100>;
-            key-positions = <19 20>;                          // J + K
+            timeout-ms = <18>;
+            require-prior-idle-ms = <70>;
+            key-positions = <19 20>;
             bindings = <&combo_ht LS(LGUI) RIGHT_PARENTHESIS>;
         };
 
         combo_paren_pair {
-            timeout-ms = <60>;
-            require-prior-idle-ms = <100>;
-            key-positions = <15 16 19 20>;                    // D + F + J + K
+            timeout-ms = <18>;
+            require-prior-idle-ms = <70>;
+            key-positions = <15 16 19 20>;
             bindings = <&paren_pair>;
         };
 
