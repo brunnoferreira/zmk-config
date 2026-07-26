@@ -17,6 +17,7 @@
 #define HM_TAPPING_TERM_FAST 200
 #define HM_PRIOR_IDLE 70
 #define COMBO_TIMEOUT 18
+#define COMBO_SLOW_TIMEOUT 30
 #define BASE 0
 #define WIN 1
 #define LOWER 2
@@ -216,31 +217,31 @@
         compatible = "zmk,combos";
 
         combo_caps_word {
-            timeout-ms = <COMBO_TIMEOUT>;
+            timeout-ms = <COMBO_SLOW_TIMEOUT>;
             bindings = <&caps_word>;
             key-positions = <16 19>;
         };
 
         combo_alfred {
-            timeout-ms = <COMBO_TIMEOUT>;
+            timeout-ms = <COMBO_SLOW_TIMEOUT>;
             bindings = <&kp LC(SPACE)>;
             key-positions = <43 44>;
         };
 
         combo_clipboard {
-            timeout-ms = <COMBO_TIMEOUT>;
+            timeout-ms = <COMBO_SLOW_TIMEOUT>;
             bindings = <&kp LS(LG(V))>;
             key-positions = <42 45>;
         };
 
         combo_caps_lock {
-            timeout-ms = <COMBO_TIMEOUT>;
+            timeout-ms = <COMBO_SLOW_TIMEOUT>;
             bindings = <&kp CAPS>;
             key-positions = <17 18>;
         };
 
         combo_context_window_switcher {
-            timeout-ms = <COMBO_TIMEOUT>;
+            timeout-ms = <COMBO_SLOW_TIMEOUT>;
             bindings = <&kp LS(LA(LC(LG(SPACE))))>;
             key-positions = <15 20>;
         };
@@ -273,7 +274,7 @@
         };
 
         combo_paren_pair {
-            timeout-ms = <COMBO_TIMEOUT>;
+            timeout-ms = <COMBO_SLOW_TIMEOUT>;
             require-prior-idle-ms = <70>;
             key-positions = <15 16 19 20>;
             bindings = <&paren_pair>;
