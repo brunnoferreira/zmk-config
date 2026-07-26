@@ -202,6 +202,34 @@
             tapping-term-ms = <175>;
             flavor = "tap-preferred";
         };
+
+        td_vmdd_prepare_contents: td_vmdd_prepare_contents {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_VMDD_PREPARE_CONTENTS";
+            #binding-cells = <0>;
+            bindings = <&none>, <&kp LG(LS(C))>;
+        };
+
+        td_vmdd_prepare_modifier: td_vmdd_prepare_modifier {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_VMDD_PREPARE_MODIFIER";
+            #binding-cells = <0>;
+            bindings = <&none>, <&kp LG(LS(LA(C)))>;
+        };
+
+        td_vmdd_search_content: td_vmdd_search_content {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_VMDD_SEARCH_CONTENT";
+            #binding-cells = <0>;
+            bindings = <&none>, <&kp LA(LG(LC(SPACE)))>;
+        };
+
+        td_vmdd_toggle_layer: td_vmdd_toggle_layer {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_VMDD_TOGGLE_LAYER";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS>, <&tog 10>;
+        };
     };
 
     conditional_layers {
@@ -291,6 +319,13 @@
             bindings = <&kp LEFT_BRACE>;
             key-positions = <4 5>;
         };
+
+        combo_clipboard_vmdd {
+            timeout-ms = <COMBO_SLOW_TIMEOUT>;
+            bindings = <&vmdd_snippets>;
+            key-positions = <42 45>;
+            layers = <10>;
+        };
     };
 
     macros {
@@ -321,6 +356,14 @@
             bindings = <&kp EXCLAMATION &kp EQUAL>;
             label = "KOTLIN_NOT_EQUAL_COMPARISON";
         };
+
+        vmdd_snippets: vmdd_snippets {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LG(V)) &kp V &kp ENTER>;
+            label = "VMDD_SNIPPETS";
+            wait-ms = <100>;
+        };
     };
 
     keymap {
@@ -339,7 +382,7 @@
             bindings = <
 &kp GRAVE       &kp Q          &kp W         &kp E         &kp R                &kp T                         &kp Y             &kp U                &kp I         &kp O         &kp P                                &kp BSLH
 &kp UNDERSCORE  &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                         &kp H             &hm_shift_r RSHFT J  &hm_r RGUI K  &hm_r RALT L  &hm_r RCTRL SEMI                     &kp SQT
-&trans          &kp Z          &kp X         &kp C         &kp V                &kp B           &none  &none  &kp N             &kp M                &kp COMMA     &kp DOT       &td_kotlin_ternary_operator 0 SLASH  &td_emoji
+&td_vmdd_toggle_layer  &kp Z   &kp X         &kp C         &kp V                &kp B           &none  &none  &kp N             &kp M                &kp COMMA     &kp DOT       &td_kotlin_ternary_operator 0 SLASH  &td_emoji
 &none           &none          &none         &mo 9         &kp BACKSPACE        &lt_hold 2 TAB                &lt_hold 1 ENTER  &lt 4 SPACE          &mo 9         &none         &none                                &none
             >;
 
@@ -444,6 +487,17 @@
 &trans  &trans  &trans  &trans  &trans  &trans                            &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &bootloader  &bootloader  &trans  &trans          &trans          &trans           &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans                            &trans  &trans          &trans          &trans           &trans  &trans
+            >;
+        };
+
+        VMdD {
+            display-name = "VMdD";
+
+            bindings = <
+&trans                 &trans  &trans  &trans                     &trans  &trans                          &trans  &trans  &trans                     &trans  &trans  &trans
+&trans                 &trans  &trans  &trans                     &trans  &trans                          &trans  &trans  &trans                     &trans  &trans  &trans
+&td_vmdd_toggle_layer  &trans  &trans  &trans                     &trans  &trans  &trans  &trans          &trans  &trans  &trans                     &trans  &trans  &td_vmdd_search_content
+&trans                 &trans  &trans  &td_vmdd_prepare_contents  &trans  &trans                          &trans  &trans  &td_vmdd_prepare_modifier  &trans  &trans  &trans
             >;
         };
     };
