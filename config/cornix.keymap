@@ -260,6 +260,7 @@
             timeout-ms = <COMBO_SLOW_TIMEOUT>;
             bindings = <&kp LS(LG(V))>;
             key-positions = <42 45>;
+            layers = <0 1 2 3 4 5 6 7 8 9>;
         };
 
         combo_caps_lock {
@@ -380,10 +381,10 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp GRAVE       &kp Q          &kp W         &kp E         &kp R                &kp T                         &kp Y             &kp U                &kp I         &kp O         &kp P                                &kp BSLH
-&kp UNDERSCORE  &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                         &kp H             &hm_shift_r RSHFT J  &hm_r RGUI K  &hm_r RALT L  &hm_r RCTRL SEMI                     &kp SQT
-&td_vmdd_toggle_layer  &kp Z   &kp X         &kp C         &kp V                &kp B           &none  &none  &kp N             &kp M                &kp COMMA     &kp DOT       &td_kotlin_ternary_operator 0 SLASH  &td_emoji
-&none           &none          &none         &mo 9         &kp BACKSPACE        &lt_hold 2 TAB                &lt_hold 1 ENTER  &lt 4 SPACE          &mo 9         &none         &none                                &none
+&kp GRAVE              &kp Q          &kp W         &kp E         &kp R                &kp T                         &kp Y             &kp U                &kp I         &kp O         &kp P                                &kp BSLH
+&kp UNDERSCORE         &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                         &kp H             &hm_shift_r RSHFT J  &hm_r RGUI K  &hm_r RALT L  &hm_r RCTRL SEMI                     &kp SQT
+&td_vmdd_toggle_layer  &kp Z          &kp X         &kp C         &kp V                &kp B           &none  &none  &kp N             &kp M                &kp COMMA     &kp DOT       &td_kotlin_ternary_operator 0 SLASH  &td_emoji
+&none                  &none          &none         &mo 9         &kp BACKSPACE        &lt_hold 2 TAB                &lt_hold 1 ENTER  &lt 4 SPACE          &mo 9         &none         &none                                &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -492,12 +493,11 @@
 
         VMdD {
             display-name = "VMdD";
-
             bindings = <
-&trans                 &trans  &trans  &trans                     &trans  &trans                          &trans  &trans  &trans                     &trans  &trans  &trans
-&trans                 &trans  &trans  &trans                     &trans  &trans                          &trans  &trans  &trans                     &trans  &trans  &trans
-&td_vmdd_toggle_layer  &trans  &trans  &trans                     &trans  &trans  &trans  &trans          &trans  &trans  &trans                     &trans  &trans  &td_vmdd_search_content
-&trans                 &trans  &trans  &td_vmdd_prepare_contents  &trans  &trans                          &trans  &trans  &td_vmdd_prepare_modifier  &trans  &trans  &trans
+&trans                 &trans  &trans  &trans                     &trans  &trans                  &trans  &trans  &trans                     &trans  &trans  &trans
+&trans                 &trans  &trans  &trans                     &trans  &trans                  &trans  &trans  &trans                     &trans  &trans  &trans
+&td_vmdd_toggle_layer  &trans  &trans  &trans                     &trans  &trans  &trans  &trans  &trans  &trans  &trans                     &trans  &trans  &td_vmdd_search_content
+&trans                 &trans  &trans  &td_vmdd_prepare_contents  &trans  &trans                  &trans  &trans  &td_vmdd_prepare_modifier  &trans  &trans  &trans
             >;
         };
     };
