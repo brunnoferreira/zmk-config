@@ -31,13 +31,13 @@ manifest:
     - name: zmk-helpers
       remote: urob
       revision: main
-    # Custom Shield (nice_oled and nice_epaper)
-    # - name: zmk-nice-oled
-    #   remote: mctechnology17
-    #   revision: main
     # KeyBeacon
     - name: zmk-keybeacon
       remote: ykiewang
       revision: v1.2.0
+    # Custom Shield (nice_oled and nice_epaper)
+    # - name: zmk-nice-oled
+    #   remote: mctechnology17
+    #   revision: main
   self:
     path: config
