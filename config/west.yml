@@ -11,6 +11,9 @@ manifest:
     # Urob
     - name: urob
       url-base: https://github.com/urob
+    # KeyBeacon
+    - name: ykiewang
+      url-base: https://github.com/ykiewang
     # Custom Shield (nice_oled and nice_epaper)
     # - name: mctechnology17
     #   url-base: https://github.com/mctechnology17
@@ -32,7 +35,7 @@ manifest:
       remote: urob
       revision: main
     # KeyBeacon
-    - name: keybeacon
+    - name: zmk-keybeacon
       remote: ykiewang
       revision: v1.2.0
     # Custom Shield (nice_oled and nice_epaper)
