@@ -32,7 +32,7 @@ manifest:
       remote: urob
       revision: main
     # KeyBeacon
-    - name: zmk-keybeacon
+    - name: keybeacon
       remote: ykiewang
       revision: v1.2.0
     # Custom Shield (nice_oled and nice_epaper)
