@@ -58,6 +58,7 @@ include:
   # Use cornix without dongle
   - board: cornix_left
     # shield: cornix_indicator
+    cmake-args: -DCMAKE_C_FLAGS=-DZMK_KEYBEACON_HAS_LEGACY_ENDPOINT=1
     artifact-name: cornix-left
   - board: cornix_right
     # shield: cornix_indicator
