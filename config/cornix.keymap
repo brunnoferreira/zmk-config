@@ -4,398 +4,49 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "zmk-helpers/helper.h"
 #include "includes/cornix54.h"
-
-// tap windows for ctl alt and gui
-
-#define HM_TAPPING_TERM 280
-#define HM_TAPPING_REPEAT 200
-
-// quick tapping for shift
-
-#define HM_TAPPING_TERM_FAST 200
-#define HM_PRIOR_IDLE 70
-#define COMBO_TIMEOUT 18
-#define COMBO_SLOW_TIMEOUT 30
-#define BASE 0
-#define WIN 1
-#define LOWER 2
-#define RAISE 3
-#define ADJUST 4
-#define NAVI   5
-#define NUM    6
-#define DEBUG  7
-
-// https://github.com/urob/zmk-config/tree/main#timeless-homerow-mods
-
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5  // left hand
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5  // right hand
-#define THUMBS LH1 LH0 RH0 RH1
-#define KEYS_T LH1 LH0 RH0 RH1
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 15
-
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/ext_power.h>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/pointing.h>
-
-&caps_word { continue-list = <UNDERSCORE MINUS>; };
+#include "includes/common.dtsi"
 
 / {
-    // Activate ADJUST layer by pressing raise and lower
-
-    behaviors {
-        hm_l: homerow_mods_left {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <175>;                // repeat on tap-into-hold
-            require-prior-idle-ms = <HM_PRIOR_IDLE>;
-            hold-trigger-key-positions = <KEYS_R KEYS_T>;
-            hold-trigger-on-release;
-        };
-
-        hm_r: homerow_mods_right {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <HM_PRIOR_IDLE>;
-            hold-trigger-key-positions = <KEYS_L KEYS_T>;
-            hold-trigger-on-release;
-        };
-
-        // Positional Homerow mods for shift
-        // Use faster tapping term and disable some features that may
-        // cause false negatives.
-
-        hm_shift_l: hm_shift_l {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <HM_PRIOR_IDLE>;
-            hold-trigger-key-positions = <KEYS_R KEYS_T>;
-            hold-trigger-on-release;
-        };
-
-        hm_shift_r: hm_shift_r {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <HM_PRIOR_IDLE>;
-            hold-trigger-key-positions = <KEYS_L KEYS_T>;
-
-            // for quick tapping; shift+~
-
-            hold-trigger-on-release;
-        };
-
-        /*
-         * Non-Positional Homerow Mods
-         * Used for &mm_grescm_gui behavior on left hand.
-         *
-         * Usage: &hm LSHFT T
-         * Tap: T
-         * Tap-Tap-Hold: Repeat T
-         * Hold: LSHIFT
-         */
-
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "tap-preferred";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <200>;
-        };
-
-        /*
-         * Used by the D+F / J+K paren combos below.
-         * hold-preferred: fires the hold the instant another key is pressed
-         * while still held, so Cmd+Shift engages immediately when you press
-         * an arrow key to select — no need to wait out tapping-term-ms.
-         */
-
-        combo_ht: combo_ht {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-        };
-
-        lt: layer_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&mo>, <&kp>;
-
-            // tap-preferred: protects taps (e.g. SPACE) from accidentally
-            // engaging the layer during fast typing rolls.
-
-            flavor = "tap-preferred";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <200>;
-        };
-
-        lt_hold: layer_tap_hold {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&mo>, <&kp>;
-
-            // hold-preferred: the layer engages the instant the next key is
-            // pressed, so symbols/numbers (e.g. "(") never fall through to the
-            // base layer. Use for thumbs you hold-and-type-on.
-
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <175>;
-        };
-
-        td_dash_arrow_right: td_dash_arrow_right {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_DASH_ARROW_RIGHT";
-            #binding-cells = <0>;
-            bindings = <&kp MINUS>, <&dash_arrow_right>;
-        };
-
-        td_emoji: td_emoji {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_EMOJI";
-            #binding-cells = <0>;
-            bindings = <&none>, <&kp LC(LG(SPACE))>;
-        };
-
-        td_kotlin_ternary_operator: td_kotlin_ternary_operator {
-            compatible = "zmk,behavior-hold-tap";
-            label = "TD_KOTLIN_TERNARY_OPERATOR";
-            bindings = <&kotlin_ternary_operator>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <175>;
-            flavor = "tap-preferred";
-        };
-
-        td_kotlin_not_equal_comparison: td_kotlin_not_equal_comparison {
-            compatible = "zmk,behavior-hold-tap";
-            label = "TD_KOTLIN_NOT_EQUAL_COMPARISON";
-            bindings = <&kotlin_not_equal_comparison>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <175>;
-            flavor = "tap-preferred";
-        };
-
-        td_vmdd_prepare_contents: td_vmdd_prepare_contents {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_VMDD_PREPARE_CONTENTS";
-            #binding-cells = <0>;
-            bindings = <&none>, <&kp LG(LS(C))>;
-        };
-
-        td_vmdd_prepare_modifier: td_vmdd_prepare_modifier {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_VMDD_PREPARE_MODIFIER";
-            #binding-cells = <0>;
-            bindings = <&none>, <&kp LG(LS(LA(C)))>;
-        };
-
-        td_vmdd_search_content: td_vmdd_search_content {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_VMDD_SEARCH_CONTENT";
-            #binding-cells = <0>;
-            bindings = <&none>, <&kp LA(LG(LC(SPACE)))>;
-        };
-
-        td_vmdd_toggle_layer: td_vmdd_toggle_layer {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_VMDD_TOGGLE_LAYER";
-            #binding-cells = <0>;
-            bindings = <&kp MINUS>, <&tog 10>;
-        };
-    };
-
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        adjust_layer {
-            if-layers = <5 5>;
-            then-layer = <5>;
-        };
-    };
-
-    combos {
-        compatible = "zmk,combos";
-
-        combo_caps_word {
-            timeout-ms = <COMBO_SLOW_TIMEOUT>;
-            bindings = <&caps_word>;
-            key-positions = <16 19>;
-        };
-
-        combo_alfred {
-            timeout-ms = <COMBO_SLOW_TIMEOUT>;
-            bindings = <&kp LC(SPACE)>;
-            key-positions = <43 44>;
-        };
-
-        combo_clipboard {
-            timeout-ms = <COMBO_SLOW_TIMEOUT>;
-            bindings = <&kp LS(LG(V))>;
-            key-positions = <42 45>;
-            layers = <0 1 2 3 4 5 6 7 8 9>;
-        };
-
-        combo_caps_lock {
-            timeout-ms = <COMBO_SLOW_TIMEOUT>;
-            bindings = <&kp CAPS>;
-            key-positions = <17 18>;
-        };
-
-        combo_context_window_switcher {
-            timeout-ms = <COMBO_SLOW_TIMEOUT>;
-            bindings = <&kp LS(LA(LC(LG(SPACE))))>;
-            key-positions = <15 20>;
-        };
-
-        combo_dash {
-            timeout-ms = <COMBO_TIMEOUT>;
-            bindings = <&kp MINUS>;
-            key-positions = <18 19>;
-        };
-
-        combo_equals {
-            timeout-ms = <COMBO_TIMEOUT>;
-            require-prior-idle-ms = <100>;
-            key-positions = <16 17>;
-            bindings = <&combo_ht LS(EQUAL) EQUAL>;
-        };
-
-        combo_paren_open {
-            timeout-ms = <COMBO_TIMEOUT>;
-            require-prior-idle-ms = <70>;
-            key-positions = <15 16>;
-            bindings = <&combo_ht LS(LGUI) LEFT_PARENTHESIS>;
-        };
-
-        combo_paren_close {
-            timeout-ms = <COMBO_TIMEOUT>;
-            require-prior-idle-ms = <70>;
-            key-positions = <19 20>;
-            bindings = <&combo_ht LS(LGUI) RIGHT_PARENTHESIS>;
-        };
-
-        combo_paren_pair {
-            timeout-ms = <COMBO_SLOW_TIMEOUT>;
-            require-prior-idle-ms = <70>;
-            key-positions = <15 16 19 20>;
-            bindings = <&paren_pair>;
-        };
-
-        combo_left_bracket {
-            timeout-ms = <COMBO_TIMEOUT>;
-            bindings = <&kp LEFT_BRACKET>;
-            key-positions = <28 29>;
-        };
-
-        combo_left_brace {
-            timeout-ms = <COMBO_TIMEOUT>;
-            bindings = <&kp LEFT_BRACE>;
-            key-positions = <4 5>;
-        };
-
-        combo_clipboard_vmdd {
-            timeout-ms = <COMBO_SLOW_TIMEOUT>;
-            bindings = <&vmdd_snippets>;
-            key-positions = <42 45>;
-            layers = <10>;
-        };
-    };
-
-    macros {
-        paren_pair: paren_pair {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &kp LEFT>;
-            label = "PAREN_PAIR";
-        };
-
-        dash_arrow_right: dash_arrow_right {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp MINUS &kp GREATER_THAN>;
-            label = "DASH_ARROW_RIGHT";
-        };
-
-        kotlin_ternary_operator: kotlin_ternary_operator {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp QUESTION &kp COLON>;
-            label = "KOTLIN_TERNARY_OPERATOR";
-        };
-
-        kotlin_not_equal_comparison: kotlin_not_equal_comparison {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp EXCLAMATION &kp EQUAL>;
-            label = "KOTLIN_NOT_EQUAL_COMPARISON";
-        };
-
-        vmdd_snippets: vmdd_snippets {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LS(LG(V)) &kp V &kp ENTER>;
-            label = "VMDD_SNIPPETS";
-            wait-ms = <100>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             display-name = "Base";
 
-            // ------------------------------------------------------------------------------------------------------------
-            // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
-            // |  ESC  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | BKSPC |
-            // |  TAB  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-            //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
+            // ----------------------------------------------------------------------------------------------------------------------
+            // |   `   |   Q   |   W   |   E   |   R   |   T   |                   |   Y   |   U   |   I   |   O   |   P   |   \   |
+            // |   _   | A/CTL | S/ALT | D/CMD | F/SFT |   G   |                   |   H   | J/SFT | K/CMD | L/ALT | ;/CTL |   '   |
+            // | -/VMdD|   Z   |   X   |   C   |   V   |   B   |       |       |   |   N   |   M   |   ,   |   .   |  / ?: | EMOJI |
+            // |       |       |       | MOUSE |  BSPC |TAB/NUM|                   |ENT/NAV|SPC/MED| MOUSE |       |       |       |
+            //
+            // Cornix only: the blank keys are unused. Encoders: volume and page up/down.
+            // x/Y = tap x, hold Y.  Home-row mods: CTL ALT CMD SFT (mirrored on the right).
+            // -/VMdD: tap -, double-tap toggles VMdD.  EMOJI: double-tap for the emoji picker.
+            // / ?:  : tap /, hold types "?:".
 
             bindings = <
-&kp GRAVE              &kp Q          &kp W         &kp E         &kp R                &kp T                         &kp Y             &kp U                &kp I         &kp O         &kp P                                &kp BSLH
-&kp UNDERSCORE         &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                         &kp H             &hm_shift_r RSHFT J  &hm_r RGUI K  &hm_r RALT L  &hm_r RCTRL SEMI                     &kp SQT
-&td_vmdd_toggle_layer  &kp Z          &kp X         &kp C         &kp V                &kp B           &none  &none  &kp N             &kp M                &kp COMMA     &kp DOT       &td_kotlin_ternary_operator 0 SLASH  &td_emoji
-&none                  &none          &none         &mo 9         &kp BACKSPACE        &lt_hold 2 TAB                &lt_hold 1 ENTER  &lt 4 SPACE          &mo 9         &none         &none                                &none
+&kp GRAVE              &kp Q          &kp W         &kp E         &kp R                &kp T                             &kp Y                 &kp U                &kp I         &kp O         &kp P                                &kp BSLH
+&kp UNDERSCORE         &hm_l LCTRL A  &hm_l LALT S  &hm_l LGUI D  &hm_shift_l LSHFT F  &kp G                             &kp H                 &hm_shift_r RSHFT J  &hm_r RGUI K  &hm_r RALT L  &hm_r RCTRL SEMI                     &kp SQT
+&td_vmdd_toggle_layer  &kp Z          &kp X         &kp C         &kp V                &kp B               &none  &none  &kp N                 &kp M                &kp COMMA     &kp DOT       &td_kotlin_ternary_operator 0 SLASH  &td_emoji
+&none                  &none          &none         &mo L_MOUSE   &kp BACKSPACE        &lt_hold L_NUM TAB                &lt_hold L_NAV ENTER  &lt L_MEDIA SPACE    &mo L_MOUSE   &none         &none                                &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
         navigation {
+            // Navigation (hold Enter). Left hand falls through to the home-row mods,
+            // so holding F (Shift) turns any of these into a selection.
+            //
+            //   line start | word <- |  up  | word -> | line end
+            //   page up    |  left   | down |  right  | page down
+
             bindings = <
-&trans         &trans  &trans  &trans  &trans  &trans                          &trans   &trans    &kp UP    &trans     &trans  &trans
-&trans         &trans  &trans  &trans  &trans  &trans                          &trans   &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
-&kp RC(RG(Q))  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans   &trans    &trans    &trans     &trans  &kp LS(LC(SPACE))
-&trans         &trans  &trans  &trans  &trans  &lt_hold 3 ESC                  &kp RET  &trans    &trans    &trans     &trans  &trans
+&trans         &trans  &trans  &trans  &trans  &trans                             &kp LG(LEFT)  &kp LA(LEFT)  &kp UP    &kp LA(RIGHT)  &kp LG(RIGHT)  &trans
+&trans         &trans  &trans  &trans  &trans  &trans                             &kp PG_UP     &kp LEFT      &kp DOWN  &kp RIGHT      &kp PG_DN      &trans
+&kp RC(RG(Q))  &trans  &trans  &trans  &trans  &trans             &trans  &trans  &trans        &trans        &trans    &trans         &trans         &kp LS(LC(SPACE))
+&trans         &trans  &trans  &trans  &trans  &lt_hold L_BT ESC                  &kp RET       &trans        &trans    &trans         &trans         &trans
             >;
         };
 
@@ -437,10 +88,10 @@
             //                    |         |         |         |         |         | |      |      |      |       |      |
 
             bindings = <
-&bt BT_CLR      &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                   &none   &none  &none   &none  &none             &none
-&none           &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4                  &tog 0  &to 0  &none   &none  &none             &tog 0
-&bt BT_CLR_ALL  &none          &none          &none          &none          &none          &trans  &trans  &none   &none  &none   &none  &ext_power EP_ON  &kp CAPSLOCK
-&none           &none          &none          &none          &none          &none                          &none   &none  &kp N4  &none  &none             &none
+&bt BT_CLR      &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                   &none        &none       &none   &none  &none             &none
+&none           &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4                  &tog L_BASE  &to L_BASE  &none   &none  &none             &tog L_BASE
+&bt BT_CLR_ALL  &none          &none          &none          &none          &none          &trans  &trans  &none        &none       &none   &none  &ext_power EP_ON  &kp CAPSLOCK
+&none           &none          &none          &none          &none          &none                          &none        &none       &kp N4  &none  &none             &none
             >;
         };
 
@@ -450,17 +101,17 @@
 &none  &none  &none           &mmv MOVE_UP    &kp PAGE_UP      &kp PAGE_DOWN                   &mkp MB1  &mkp MB3  &mkp MB2  &msc SCRL_UP  &msc SCRL_DOWN  &none
 &none  &none  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_UP                    &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT     &none           &none
 &none  &none  &none           &none           &none            &msc SCRL_DOWN  &trans  &trans  &trans    &trans    &none     &none         &none           &none
-&none  &none  &none           &mo 8           &trans           &trans                          &none     &none     &kp N5    &none         &none           &none
+&none  &none  &none           &mo L_DEBUG     &trans           &trans                          &none     &none     &kp N5    &none         &none           &none
             >;
         };
 
         KeyPad_layer {
             display-name = "NumPad";
             bindings = <
-&mo 8  &none  &none  &none  &none  &none                  &kp KP_N7        &kp KP_N8        &kp KP_N9        &kp KP_MINUS  &kp KP_MULTIPLY  &none
-&none  &none  &none  &none  &none  &none                  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_N6        &kp KP_PLUS   &kp KP_DIVIDE    &none
-&none  &none  &none  &none  &none  &none  &trans  &trans  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_N3        &none         &none            &none
-&none  &none  &none  &none  &none  &mo 8                  &kp KP_N0        &kp KP_DOT       &kp KP_NUMBER_0  &none         &none            &none
+&mo L_DEBUG  &none  &none  &none  &none  &none                        &kp KP_N7        &kp KP_N8        &kp KP_N9        &kp KP_MINUS  &kp KP_MULTIPLY  &none
+&none        &none  &none  &none  &none  &none                        &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_N6        &kp KP_PLUS   &kp KP_DIVIDE    &none
+&none        &none  &none  &none  &none  &none        &trans  &trans  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_N3        &none         &none            &none
+&none        &none  &none  &none  &none  &mo L_DEBUG                  &kp KP_N0        &kp KP_DOT       &kp KP_NUMBER_0  &none         &none            &none
             >;
         };
 

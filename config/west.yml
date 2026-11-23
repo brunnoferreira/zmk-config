@@ -33,7 +33,7 @@ manifest:
     # Urob
     - name: zmk-helpers
       remote: urob
-      revision: main
+      revision: 7bcba18fc8df27303eb92a435d33ea870cc51f98 # main as of 2026-09-10; bump deliberately
     # KeyBeacon
     - name: zmk-keybeacon
       remote: ykiewang
