@@ -328,6 +328,41 @@
             key-positions = <LT1 LT0>;
         };
 
+        // One-handed edit shortcuts: press a bottom-row key together with the
+        // home-row key above it (Z+A undo, X+S cut, C+D copy, V+F paste).
+
+        combo_undo {
+            timeout-ms = <COMBO_TIMEOUT>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            bindings = <&kp LG(Z)>;
+            key-positions = <LM4 LB4>;
+            layers = <L_BASE L_NAV L_MOUSE>;
+        };
+
+        combo_cut {
+            timeout-ms = <COMBO_TIMEOUT>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            bindings = <&kp LG(X)>;
+            key-positions = <LM3 LB3>;
+            layers = <L_BASE L_NAV L_MOUSE>;
+        };
+
+        combo_copy {
+            timeout-ms = <COMBO_TIMEOUT>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            bindings = <&kp LG(C)>;
+            key-positions = <LM2 LB2>;
+            layers = <L_BASE L_NAV L_MOUSE>;
+        };
+
+        combo_paste {
+            timeout-ms = <COMBO_TIMEOUT>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            bindings = <&kp LG(V)>;
+            key-positions = <LM1 LB1>;
+            layers = <L_BASE L_NAV L_MOUSE>;
+        };
+
         combo_clipboard_vmdd {
             timeout-ms = <COMBO_SLOW_TIMEOUT>;
             bindings = <&vmdd_snippets>;
