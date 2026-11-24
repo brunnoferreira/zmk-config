@@ -33,17 +33,17 @@
         };
 
         navigation {
-            // Navigation (hold Enter). Left hand falls through to the home-row mods,
-            // so holding F (Shift) turns any of these into a selection.
+            // Navigation (hold Enter). Left home row is plain CTL ALT CMD SFT (no
+            // hold-tap), so holding F (Shift) reliably turns any of these into a selection.
             //
             //   line start | word <- |  up  | word -> | line end
             //   page up    |  left   | down |  right  | page down
 
             bindings = <
-&trans         &trans  &trans  &trans  &trans  &trans             &kp LG(LEFT)  &kp LA(LEFT)  &kp UP    &kp LA(RIGHT)  &kp LG(RIGHT)  &trans
-&trans         &trans  &trans  &trans  &trans  &trans             &kp PG_UP     &kp LEFT      &kp DOWN  &kp RIGHT      &kp PG_DN      &trans
-&kp RC(RG(Q))  &trans  &trans  &trans  &trans  &trans             &trans        &trans        &trans    &trans         &trans         &kp LS(LC(SPACE))
-                               &trans  &trans  &lt_hold L_BT ESC  &kp RET       &trans        &trans
+&trans         &trans     &trans    &trans    &trans     &trans             &kp LG(LEFT)  &kp LA(LEFT)  &kp UP    &kp LA(RIGHT)  &kp LG(RIGHT)  &trans
+&trans         &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &trans             &kp PG_UP     &kp LEFT      &kp DOWN  &kp RIGHT      &kp PG_DN      &trans
+&kp RC(RG(Q))  &trans     &trans    &trans    &trans     &trans             &trans        &trans        &trans    &trans         &trans         &kp LS(LC(SPACE))
+                                    &trans    &trans     &lt_hold L_BT ESC  &kp RET       &trans        &trans
             >;
         };
 
